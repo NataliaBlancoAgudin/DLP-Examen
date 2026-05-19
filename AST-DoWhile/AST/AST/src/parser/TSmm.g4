@@ -168,7 +168,7 @@ statement returns [List<Statement> ast = new ArrayList<Statement>()] locals[List
                 $ast.add(new Invocation($args, name, $ID.getLine(), $ID.getCharPositionInLine()+1));
                 }
           // EJERCICIO
-          | 'do' b1=body '(' e1=expression ')'
+          | 'do' b1=body '(' e1=expression ')' ';'
                 {$ast.add(new DoWhile($e1.ast, $b1.ast, $e1.ast.getLine(), $e1.ast.getColumn()));}
           // Return
           | 'return' e1=expression ';'

@@ -25,7 +25,7 @@ function main(): void {
 		else
 			log 'e','v','e','n','\n';
 		i = i + 1;
-	} (i < 10)
+	} (i < 10);
 	log '\n';
 
 	i = 0 ;
