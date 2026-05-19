@@ -1,0 +1,43 @@
+GRAMATICA ABSTRACTA DEL PROYECTO
+
+// Program
+(1) Program:                program -> def*
+
+// Definitions
+(2) FunctionDefinition:     def     -> ID type stmt*
+(3) VarDefinition:          def     -> ID type
+
+// Expressions
+(4)  ArithmeticOperation:   expr1   -> expr2 (+|-|*|/|%) expr3
+(5)  ArrayAccess:           expr1   -> expr2 expr3
+(6)  Cast:                  expr1   -> type expr2
+(7)  CharLiteral:           expr    -> CHAR_CONSTANT
+(8)  ComparationOperation:  expr1   -> expr2 (>=|<=|>|<|==|!=) expr3
+(9)  FieldAccess:           expr1   -> expr2 ID
+(10)  IntLiteral:            expr    -> INT_CONSTANT
+(11) Invocation:            expr1   -> expr2 expr3*
+(12) LogicOperation:        expr1   -> expr1 (&& | ||) expr3
+(13) RealLiteral:           expr    -> REAL_CONSTANT
+(14) UnaryMinus:            expr1   -> expr2
+(15) UnaryNot:              expr1   -> expr2
+(16) Variable:              expr    -> ID
+
+// Statements
+(17) Assigment:             stmt    -> expr1 expr2
+(18) If_Else:               stmt1   -> expr stmt2* stmt3*
+(19) Input:                 stmt    -> expr
+(20) Log:                   stmt    -> expr
+(21) Return:                stmt    -> expr
+(22) While:                 stmt1   -> expr stmt2*
+// EJERCICIO
+(31) DoWhile:               stmt1    -> expr stmt2*
+
+// Types
+(23) ArrayType:             type    -> INT_CONSTANT type
+(24) CharType:              type    -> CHAR
+(25) FuncType:              type    -> type def*
+(26) IntType:               type    -> INT
+(27) NumberType:            type    -> NUMBER
+(28) RecordType:            type    -> field*
+(29) RecordField:           field   -> ID type
+(30) VoidType:              type    -> VOID
