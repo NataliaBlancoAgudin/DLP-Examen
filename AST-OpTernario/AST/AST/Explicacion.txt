@@ -1,0 +1,20 @@
+IMPLEMENTACIÓN DEL TERNARY OPERATOR
+
+1. Añadir las clases en el ast de TernaryOperator
+
+2. Añadir los visit en Visitor, AbstractVisitor y AbstractCGVisitor
+    (ACUERDATE DE CAMBIAR EL ACCEPT)
+
+3. Añadir reglas sintáctica (.g4)
+    Asociativo de derechas
+
+4. LValue -> no lvalue
+
+5. Definition -> NADA
+
+6. Type -> comprobar que la condicion (la parte de la izquierda) es mustBeLogical
+           el tipo de la expresion resultante es el tipo comun entre ambos operadores
+
+7. Añadir las plantilla de código (value)
+
+8. ExecuteCGVisitor

@@ -1,0 +1,18 @@
+IMPLEMENTACIÓN DEL FOR (FACIL)
+
+1. Añadir las clases en el ast de For
+
+2. Añadir los visit en Visitor, AbstractVisitor y AbstractCGVisitor
+    (ACUERDATE DE CAMBIAR EL ACCEPT)
+
+3. Añadir reglas sintáctica (.g4)
+
+4. LValue -> NADA
+
+5. Definition -> Añadir un nuevo ambito al For
+
+6. Type -> comprobar si la condición es mustBeLogical (for)
+
+7. Añadir las plantilla de código (execute)
+
+8. ExecuteCGVisitor

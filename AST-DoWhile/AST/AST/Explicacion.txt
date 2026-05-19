@@ -1,0 +1,18 @@
+IMPLEMENTACIÓN DEL DOWHILE
+
+1. Añadir clase DoWhile
+
+2. Añadir los visit en Visitor, AbstractVisitor y AbstractCGVisitor
+    (ACUERDATE DE CAMBIAR EL ACCEPT)
+
+3. Añadir regla sintáctica (.g4)
+
+4. LValue -> NADA
+
+5. Definition -> NADA
+
+6. Type -> comprobar si la condición es mustBeLogical
+
+7. Añadir la plantilla de código (execute)
+
+8. ExecuteCGVisitor
