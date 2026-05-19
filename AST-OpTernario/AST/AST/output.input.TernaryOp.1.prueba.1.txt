@@ -168,6 +168,51 @@ label3:
 	outb
 
 #line	22
+	 ' * Write
+
+#line	22
+	 ' * TernaryOperator
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	2
+	lti
+	jz	label4
+	 ' * true body
+
+#line	22
+	 ' * TernaryOperator
+	push	bp
+	pushi	-6
+	addi
+	loadi
+	pushi	1
+	lti
+	jz	label6
+	 ' * true body
+	pushb	97
+	jmp	label7
+	 ' * false body
+
+label6:
+
+	pushb	77
+
+label7:
+
+	jmp	label5
+	 ' * false body
+
+label4:
+
+	pushb	109
+
+label5:
+
+	outb
+
+#line	23
 	 ' * Assignment
 	pusha	0
 	push	bp
@@ -183,7 +228,7 @@ label3:
 	loadf
 	storef
 
-#line	23
+#line	24
 	 ' * Write
 	push	bp
 	pushi	-6
@@ -191,12 +236,12 @@ label3:
 	loadi
 	outi
 
-#line	23
+#line	24
 	 ' * Write
 	pushb	58
 	outb
 
-#line	23
+#line	24
 	 ' * Write
 	pusha	0
 	push	bp
@@ -209,12 +254,12 @@ label3:
 	loadf
 	outf
 
-#line	23
+#line	24
 	 ' * Write
 	pushb	32
 	outb
 
-#line	24
+#line	25
 	 ' * If
 	push	bp
 	pushi	-6
@@ -222,63 +267,63 @@ label3:
 	loadi
 	pushi	2
 	modi
-	jz	label4
+	jz	label8
 	 ' * if body
 
-#line	25
+#line	26
 	 ' * Write
 	pushb	111
 	outb
 
-#line	25
+#line	26
 	 ' * Write
 	pushb	100
 	outb
 
-#line	25
+#line	26
 	 ' * Write
 	pushb	100
 	outb
 
-#line	25
+#line	26
 	 ' * Write
 	pushb	10
 	outb
-	jmp	label5
+	jmp	label9
 
-label4:
+label8:
 
 	 ' * else body
 
-#line	27
+#line	28
 	 ' * Write
 	pushb	101
 	outb
 
-#line	27
+#line	28
 	 ' * Write
 	pushb	118
 	outb
 
-#line	27
+#line	28
 	 ' * Write
 	pushb	101
 	outb
 
-#line	27
+#line	28
 	 ' * Write
 	pushb	110
 	outb
 
-#line	27
+#line	28
 	 ' * Write
 	pushb	10
 	outb
 
-label5:
+label9:
 
 
-#line	28
+#line	29
 	 ' * Assignment
 	push	bp
 	pushi	-6
@@ -295,12 +340,12 @@ label5:
 label1:
 
 
-#line	30
+#line	31
 	 ' * Write
 	pushb	10
 	outb
 
-#line	32
+#line	33
 	 ' * Assignment
 	push	bp
 	pushi	-6
@@ -308,10 +353,10 @@ label1:
 	pushi	0
 	storei
 
-#line	33
+#line	34
 	 ' * While
 
-label6:
+label10:
 
 	push	bp
 	pushi	-6
@@ -319,10 +364,10 @@ label6:
 	loadi
 	pushi	4
 	lti
-	jz	label7
+	jz	label11
 	 ' * While body
 
-#line	34
+#line	35
 	 ' * Assignment
 	push	bp
 	pushi	-8
@@ -330,10 +375,10 @@ label6:
 	pushi	0
 	storei
 
-#line	35
+#line	36
 	 ' * While
 
-label8:
+label12:
 
 	push	bp
 	pushi	-8
@@ -341,10 +386,10 @@ label8:
 	loadi
 	pushi	5
 	lti
-	jz	label9
+	jz	label13
 	 ' * While body
 
-#line	36
+#line	37
 	 ' * Assignment
 	push	bp
 	pushi	-48
@@ -374,7 +419,7 @@ label8:
 	addi
 	storei
 
-#line	37
+#line	38
 	 ' * Write
 	push	bp
 	pushi	-48
@@ -396,12 +441,12 @@ label8:
 	loadi
 	outi
 
-#line	37
+#line	38
 	 ' * Write
 	pushb	32
 	outb
 
-#line	38
+#line	39
 	 ' * Assignment
 	push	bp
 	pushi	-8
@@ -413,17 +458,17 @@ label8:
 	pushi	1
 	addi
 	storei
-	jmp	label8
+	jmp	label12
 
-label9:
+label13:
 
 
-#line	40
+#line	41
 	 ' * Write
 	pushb	10
 	outb
 
-#line	41
+#line	42
 	 ' * Assignment
 	push	bp
 	pushi	-6
@@ -435,8 +480,8 @@ label9:
 	pushi	1
 	addi
 	storei
-	jmp	label6
+	jmp	label10
 
-label7:
+label11:
 
 	ret	0, 54, 0

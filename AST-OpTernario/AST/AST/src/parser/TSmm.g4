@@ -114,7 +114,7 @@ expression returns [Expression ast] locals [List<Expression> exps = new ArrayLis
                 }
 
            // EJERCICIO: TernaryOperator
-           | e1=expression '?' e2=expression ':' e3=expression
+           | <assoc = right> e1=expression '?' e2=expression ':' e3=expression
                 {$ast = new TernaryOperator(
                         $e1.ast,
                         $e2.ast,

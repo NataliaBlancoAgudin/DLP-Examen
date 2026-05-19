@@ -520,7 +520,7 @@ public class TSmmParser extends Parser {
 						setState(112);
 						match(T__22);
 						setState(113);
-						((ExpressionContext)_localctx).e3 = expression(6);
+						((ExpressionContext)_localctx).e3 = expression(5);
 						((ExpressionContext)_localctx).ast =  new TernaryOperator(
 						                                  ((ExpressionContext)_localctx).e1.ast,
 						                                  ((ExpressionContext)_localctx).e2.ast,
@@ -1739,7 +1739,7 @@ public class TSmmParser extends Parser {
 		"\u0000\u0000hi\n\u0006\u0000\u0000ij\u0007\u0003\u0000\u0000jk\u0003\u0002"+
 		"\u0001\u0007kl\u0006\u0001\uffff\uffff\u0000l\u007f\u0001\u0000\u0000"+
 		"\u0000mn\n\u0005\u0000\u0000no\u0005\u0016\u0000\u0000op\u0003\u0002\u0001"+
-		"\u0000pq\u0005\u0017\u0000\u0000qr\u0003\u0002\u0001\u0006rs\u0006\u0001"+
+		"\u0000pq\u0005\u0017\u0000\u0000qr\u0003\u0002\u0001\u0005rs\u0006\u0001"+
 		"\uffff\uffff\u0000s\u007f\u0001\u0000\u0000\u0000tu\n\u000e\u0000\u0000"+
 		"uv\u0005\u0004\u0000\u0000vw\u0003\u0002\u0001\u0000wx\u0005\u0005\u0000"+
 		"\u0000xy\u0006\u0001\uffff\uffff\u0000y\u007f\u0001\u0000\u0000\u0000"+

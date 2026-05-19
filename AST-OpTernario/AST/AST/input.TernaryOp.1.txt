@@ -19,6 +19,7 @@ function main(): void {
 	i=0;	
 	while (i < 10) {
 		log ( i < 2? 'm' : 'M');
+		log ( i < 2 ? i < 1 ? 'a' : 'M' : 'm' );
 		v[i] = value;
 		log i,':',v[i], ' ';
 		if (i % 2)
