@@ -1,0 +1,97 @@
+GRAMATICA ATRIBUIDA TYPE_CHECKIN -> Los tipos los vamos a poner a las expresiones
+G:
+    (1) IntLiteral:             expr        -> INT_CONSTANT
+    (2) CharLiteral:            expr        -> CHAR_CONSTANT
+    (3) RealLiteral:            expr        -> REAL_CONSTANT
+    (4) Variable:               expr        -> ID
+    (5) ArithmeticOperation:    expr1       -> expr2 (+|-|*|/|%) expr3
+    (6) While:                  stmt1       -> expr stmt2*
+    (7) UnaryMinus:             expr1       -> expr2
+    (8) UnaryNot:               expr1       -> expr2
+    (9) LogicOperation:         expr1       -> expr2 (&& | ||) expr3
+    (10) ComparationOp:         expr1       -> expr2 (>= | <= | > | < | == | !=) expr3
+    (11) Invocation:            expr1       -> expr2 expr3*
+    (12) ArrayAccess:           expr1       -> expr2 expr3
+    (13) Cast:                  expr1       -> type expr2
+    (14) FieldAccess:           expr1       -> ID expr2
+    (15) If_Else:               stmt1       -> stmt2* stmt3* expr
+    (16) Input:                 stmt        -> expr
+    (17) Log:                   stmt        -> expr
+    (18) Return:                stmt        -> expr
+    (19) Assigment:             stmt        -> expr1 expr2
+    (20) FuncDefinition:        def         -> stmt*
+
+    // EJERCICIO
+    (21) BooleanLiteral:        expr        ->   BOOLEAN_CONSTANT
+
+A: {expr.type : Type}
+
+R:
+    //IntLiteral: expr -> INT_CONSTANT
+    (1) expr.type = IntType.getInstance();
+
+    //CharLiteral: expr -> CHAR_CONSTANT
+    (2) expr.type = CharType.getInstance();
+
+    //RealLiteral: expr -> REAL_CONSTANT
+    (3) expr.type = NumberType.getInstance();
+
+    // Variable: expr -> ID
+    (4) expr.type = expr.definition.type;
+
+    // ArithmeticOperation: expr1 -> expr2 (+|-|*|/|%) expr3
+    (5) expr1.type = expr2.type.arithmetic(expr3.type, expr1);
+
+    // While: stmt1 -> expr stmt2*
+    (6) expr.type.mustBeLogical(stmt1);
+
+    // UnaryMinus: expr1 -> expr2
+    (7) expr1.type = expr2.type.arithmetic(expr1)
+
+    // UnaryNot: expr1 -> expr2
+    (8) expr1.type = expr2.type.logic(expr1)
+
+    // LogicOperation: expr1 -> expr2 (&& | ||) expr3
+    (9) expr1.type = expr2.type.logic(expr3.type, expr1)
+
+    // ComparationOp: expr1 -> expr2 (>= | <= | > | < | == | !=) expr3
+    (10) expr1.type = expr2.type.comparison(expr3.type, expr1)
+
+    // Invocation: expr1 -> expr2 expr3*
+    (11) List<Type> argumentsTypes = new ArrayList<Type>();
+    	 for(Expression e : expr3*){
+    	    argumentsTypes.add(e.type);
+    	 }
+    	expr1.type = expr2.type.parenthesis(argumentsTypes, expr1)
+
+    // ArrayAccess: expr1 -> expr2 expr3
+    (12) expr1.type = expr2.type.squareBrackets(expr3.type, expr1)
+
+    // Cast: expr1 -> type expr2
+    (13) expr1.type = expr2.type.canBeCast(type,expr1)
+
+    // FieldAccess: expr1 -> name expr2
+    (14) expr1.type = expr2.type.dot(name, expr1)
+
+    // If_Else: stmt1 -> stmt2* stmt3* expr
+    (15) expr.type.mustBeLogical(stmt1)
+
+    // Input: stmt -> expr
+    (16) expr.type.mustBeBuiltIn(stmt1)
+
+    // Log: stmt -> expr
+    (17) expr.type.mustBeBuiltIn(stmt1)
+
+    // Return: stmt -> expr
+    (18) expr.type.mustPromoteTo(returnType, stmt1)
+
+    // Assigment: stmt -> expr1 expr2
+    (19) expr2.type.mustPromoteTo(expr1.type)
+
+    // FuncDefinition: def -> ID type stmt*
+    (20) Type returnType = ((FuncType) type).getReturnType
+         for(Statement st: stmt*)
+            // visit(st, returnType)
+
+    // BooleanLiteral:        expr        ->   BOOLEAN_CONSTANT
+    (21) expr.type = BooleanType.getInstance()

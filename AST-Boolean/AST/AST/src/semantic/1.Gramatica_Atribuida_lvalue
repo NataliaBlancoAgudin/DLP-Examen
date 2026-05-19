@@ -1,0 +1,78 @@
+GRAMATICA ATRIBUIDA LVALUE -> LValue se ponen en expressions (se comprueba si el assigment y el input estan bien)
+
+G:
+    // Expressions
+    (1) ArithmeticOperation:    expr1       -> expr2 (+|-|*|/|%) expr3
+    (2) ArrayAccess:            expr1       -> expr2 expr3
+    (3) Cast:                   expr1       -> type expr2
+    (4) CharLiteral:            expr        -> CHAR_CONSTANT
+    (5) ComparationOp:          expr1       -> expr2 (>= | <= | > | < | == | !=) expr3
+    (6) FieldAccess:            expr1       -> expr2 ID
+    (7) IntLiteral:             expr        -> INT_CONSTANT
+    (8) Invocation:             expr1       -> expr2 expr3*
+    (9) LogicOperation:         expr1       -> expr2 (&& | ||) expr3
+    (10)RealLiteral:            expr        -> REAL_CONSTANT
+    (11)UnaryMinus:             expr1       -> expr2
+    (12)UnaryNot:               expr1       -> expr2
+    (13)Variable:               expr        -> ID
+
+    // Statement
+    (14)Assigment:             stmt        -> expr1 expr2
+    (15)Input:                 stmt        -> expr
+
+    // EJERCICIO
+    (16) BooleanLiteral:        expr        ->   BOOLEAN_CONSTANT
+
+A = {exp.lvalue : boolean}
+
+R:
+    // ArithmeticOperation:    expr1 -> expr2 (+|-|*|/|%) expr3
+    (1) expr1.lvalue = false
+
+    // ArrayAccess:            expr1 -> expr2 expr3
+    (2) expr1.lvalue = true
+
+    // Cast:                   expr1 -> type expr2
+    (3) expr1.lvalue = false
+
+    // CharLiteral:            expr  -> CHAR_CONSTANT
+    (4) expr.lvalue = false
+
+    // ComparationOp:          expr1  -> expr2 (>= | <= | > | < | == | !=) expr3
+    (5) expr1.lvalue = false
+
+    // FieldAccess:            expr1       -> expr2 ID
+    (6) expr1.lvalue = true
+
+    // IntLiteral:             expr        -> INT_CONSTANT
+    (7) expr.lvalue = false
+
+    // Invocation:             expr1       -> expr2 expr3*
+    (8) expr.lvalue = false
+
+    // LogicOperation:         expr1       -> expr2 (&& | ||) expr3
+    (9) expr1.lvalue = false
+
+    // RealLiteral:            expr        -> REAL_CONSTANT
+    (10) expr1.lvalue = false
+
+    // UnaryMinus:             expr1       -> expr2
+    (11) expr1.lvalue = false
+
+    // UnaryNot:               expr1       -> expr2
+    (12) expr1.lvalue = false
+
+    // Variable:               expr        -> ID
+    (13) expr.lvalue = true
+
+
+    // Assigment:              stmt        -> expr1 expr2
+    (14) if(!expr1.lvalue)
+        ErrorType("El lado izquierdo de la asignación no es direccionable (lvalue))
+
+    // Input:                  stmt        -> expr
+    (15) if(!expr.lvalue)
+        ErrorType("La expresión del input debe ser direccionable (lvalue))
+
+    // BooleanLiteral:        expr        ->   BOOLEAN_CONSTANT
+    (16) expr.type = lvalue
