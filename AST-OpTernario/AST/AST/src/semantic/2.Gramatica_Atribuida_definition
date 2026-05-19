@@ -1,0 +1,32 @@
+GRAMATICA ATRIBUIDA IDENTIFICATION -> Se debe de "unir" una variable con su definición
+
+G:
+    // Definition
+    (1) FunctionDefinition:     def  -> ID type stmt*
+    (2) VarDefinition:          def  -> ID type
+
+    // Expression
+    (3) Variable:               expr -> ID
+
+A = {expr.definition : Definition}
+
+R:
+    // FunctionDefinition:     def  -> ID type stmt*
+    (1) if(!sg.insert(ID)
+            ErrorType(Ya existe una función con el nombre " + ID + " en el mismo ambito")
+        sg.set()
+        sg.reset()
+
+    // VarDefinition:          def  -> ID type
+    (2) if(!sg.insert(ID)
+            ErrorType("Ya existe una variable con el nombre " + ID + " en el mismo ambito"
+
+    // Variable:               expr -> ID
+    (3) Definition def = sg.find(ID)
+        if(def != null)
+            expr.definition = def
+        else
+            ErrorType error = ("No existe una variable con el nombre '" + ID + "'.")
+            expr.definition(new VarDefinition("",error, 0,0)
+
+
