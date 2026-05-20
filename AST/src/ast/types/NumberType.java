@@ -64,7 +64,7 @@ public class NumberType extends AbstractType {
 
     @Override
     public Type canBeCastTo(Type other, Locatable c){
-        if(other == this || other == IntType.getInstance()) {
+        if(other == this || other == IntType.getInstance() || other == CharType.getInstance()) {
             return other;
         }
         return super.canBeCastTo(other, c);
