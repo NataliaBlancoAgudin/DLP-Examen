@@ -29,8 +29,8 @@ public class TSmmParser extends Parser {
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
-		T__38=39, T__39=40, WHITES=41, INT_CONSTANT=42, COMMENTS=43, REAL_CONSTANT=44, 
-		ID=45, CHAR_CONSTANT=46, BOOLEAN_CONSTANT=47;
+		T__38=39, T__39=40, BOOLEAN_CONSTANT=41, WHITES=42, INT_CONSTANT=43, COMMENTS=44, 
+		REAL_CONSTANT=45, ID=46, CHAR_CONSTANT=47;
 	public static final int
 		RULE_program = 0, RULE_expression = 1, RULE_statement = 2, RULE_body = 3, 
 		RULE_type = 4, RULE_simple_type = 5, RULE_recordField = 6, RULE_definition = 7, 
@@ -60,8 +60,8 @@ public class TSmmParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, "WHITES", "INT_CONSTANT", "COMMENTS", "REAL_CONSTANT", 
-			"ID", "CHAR_CONSTANT", "BOOLEAN_CONSTANT"
+			null, null, null, null, null, "BOOLEAN_CONSTANT", "WHITES", "INT_CONSTANT", 
+			"COMMENTS", "REAL_CONSTANT", "ID", "CHAR_CONSTANT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -188,10 +188,10 @@ public class TSmmParser extends Parser {
 		public Token ID;
 		public ExpressionContext e2;
 		public Simple_typeContext t1;
+		public Token BOOLEAN_CONSTANT;
 		public Token INT_CONSTANT;
 		public Token REAL_CONSTANT;
 		public Token CHAR_CONSTANT;
-		public Token BOOLEAN_CONSTANT;
 		public Token OP;
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -203,10 +203,10 @@ public class TSmmParser extends Parser {
 		public Simple_typeContext simple_type() {
 			return getRuleContext(Simple_typeContext.class,0);
 		}
+		public TerminalNode BOOLEAN_CONSTANT() { return getToken(TSmmParser.BOOLEAN_CONSTANT, 0); }
 		public TerminalNode INT_CONSTANT() { return getToken(TSmmParser.INT_CONSTANT, 0); }
 		public TerminalNode REAL_CONSTANT() { return getToken(TSmmParser.REAL_CONSTANT, 0); }
 		public TerminalNode CHAR_CONSTANT() { return getToken(TSmmParser.CHAR_CONSTANT, 0); }
-		public TerminalNode BOOLEAN_CONSTANT() { return getToken(TSmmParser.BOOLEAN_CONSTANT, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -252,7 +252,7 @@ public class TSmmParser extends Parser {
 				setState(60);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 268280837178114L) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 257285720900354L) != 0)) {
 					{
 					setState(49);
 					((ExpressionContext)_localctx).e1 = expression(0);
@@ -337,6 +337,17 @@ public class TSmmParser extends Parser {
 			case 6:
 				{
 				setState(79);
+				((ExpressionContext)_localctx).BOOLEAN_CONSTANT = match(BOOLEAN_CONSTANT);
+				((ExpressionContext)_localctx).ast =  new BooleanLiteral(
+				                         LexerHelper.lexemeToBoolean((((ExpressionContext)_localctx).BOOLEAN_CONSTANT!=null?((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getText():null)),
+				                         ((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getLine(),
+				                         ((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getCharPositionInLine()+1);
+				                 
+				}
+				break;
+			case 7:
+				{
+				setState(81);
 				((ExpressionContext)_localctx).ID = match(ID);
 				((ExpressionContext)_localctx).ast =  new Variable(
 				                        (((ExpressionContext)_localctx).ID!=null?((ExpressionContext)_localctx).ID.getText():null),
@@ -345,9 +356,9 @@ public class TSmmParser extends Parser {
 				                
 				}
 				break;
-			case 7:
+			case 8:
 				{
-				setState(81);
+				setState(83);
 				((ExpressionContext)_localctx).INT_CONSTANT = match(INT_CONSTANT);
 				((ExpressionContext)_localctx).ast =  new IntLiteral(
 				                        LexerHelper.lexemeToInt((((ExpressionContext)_localctx).INT_CONSTANT!=null?((ExpressionContext)_localctx).INT_CONSTANT.getText():null)) ,
@@ -356,9 +367,9 @@ public class TSmmParser extends Parser {
 				                
 				}
 				break;
-			case 8:
+			case 9:
 				{
-				setState(83);
+				setState(85);
 				((ExpressionContext)_localctx).REAL_CONSTANT = match(REAL_CONSTANT);
 				((ExpressionContext)_localctx).ast =  new RealLiteral(
 				                        LexerHelper.lexemeToReal((((ExpressionContext)_localctx).REAL_CONSTANT!=null?((ExpressionContext)_localctx).REAL_CONSTANT.getText():null)),
@@ -367,25 +378,14 @@ public class TSmmParser extends Parser {
 				                
 				}
 				break;
-			case 9:
+			case 10:
 				{
-				setState(85);
+				setState(87);
 				((ExpressionContext)_localctx).CHAR_CONSTANT = match(CHAR_CONSTANT);
 				((ExpressionContext)_localctx).ast =  new CharLiteral(
 				                        LexerHelper.lexemeToChar((((ExpressionContext)_localctx).CHAR_CONSTANT!=null?((ExpressionContext)_localctx).CHAR_CONSTANT.getText():null)),
 				                        ((ExpressionContext)_localctx).CHAR_CONSTANT.getLine(),
 				                        ((ExpressionContext)_localctx).CHAR_CONSTANT.getCharPositionInLine()+1);
-				                
-				}
-				break;
-			case 10:
-				{
-				setState(87);
-				((ExpressionContext)_localctx).BOOLEAN_CONSTANT = match(BOOLEAN_CONSTANT);
-				((ExpressionContext)_localctx).ast =  new BooleanLiteral(
-				                        LexerHelper.lexemeToBoolean((((ExpressionContext)_localctx).BOOLEAN_CONSTANT!=null?((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getText():null)),
-				                        ((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getLine(),
-				                        ((ExpressionContext)_localctx).BOOLEAN_CONSTANT.getCharPositionInLine()+1);
 				                
 				}
 				break;
@@ -742,7 +742,7 @@ public class TSmmParser extends Parser {
 				setState(193);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 268280837178114L) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 257285720900354L) != 0)) {
 					{
 					setState(182);
 					((StatementContext)_localctx).e1 = expression(0);
@@ -834,11 +834,11 @@ public class TSmmParser extends Parser {
 			case T__25:
 			case T__26:
 			case T__28:
+			case BOOLEAN_CONSTANT:
 			case INT_CONSTANT:
 			case REAL_CONSTANT:
 			case ID:
 			case CHAR_CONSTANT:
-			case BOOLEAN_CONSTANT:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(205);
@@ -854,7 +854,7 @@ public class TSmmParser extends Parser {
 				setState(214);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 268281596347138L) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 257286480069378L) != 0)) {
 					{
 					{
 					setState(209);
@@ -1325,7 +1325,7 @@ public class TSmmParser extends Parser {
 			setState(302);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 268281596347138L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 257286480069378L) != 0)) {
 				{
 				{
 				setState(297);
@@ -1707,7 +1707,7 @@ public class TSmmParser extends Parser {
 		"\uffff\u0000(\u0001\u0001\u0000\u0000\u0000)*\u0006\u0001\uffff\uffff"+
 		"\u0000*+\u0005\u0001\u0000\u0000+,\u0003\u0002\u0001\u0000,-\u0005\u0002"+
 		"\u0000\u0000-.\u0006\u0001\uffff\uffff\u0000.Z\u0001\u0000\u0000\u0000"+
-		"/0\u0005-\u0000\u00000<\u0005\u0001\u0000\u000012\u0003\u0002\u0001\u0000"+
+		"/0\u0005.\u0000\u00000<\u0005\u0001\u0000\u000012\u0003\u0002\u0001\u0000"+
 		"29\u0006\u0001\uffff\uffff\u000034\u0005\u0003\u0000\u000045\u0003\u0002"+
 		"\u0001\u000056\u0006\u0001\uffff\uffff\u000068\u0001\u0000\u0000\u0000"+
 		"73\u0001\u0000\u0000\u00008;\u0001\u0000\u0000\u000097\u0001\u0000\u0000"+
@@ -1719,9 +1719,9 @@ public class TSmmParser extends Parser {
 		"\uffff\uffff\u0000FZ\u0001\u0000\u0000\u0000GH\u0005\b\u0000\u0000HI\u0003"+
 		"\u0002\u0001\u000bIJ\u0006\u0001\uffff\uffff\u0000JZ\u0001\u0000\u0000"+
 		"\u0000KL\u0005\t\u0000\u0000LM\u0003\u0002\u0001\nMN\u0006\u0001\uffff"+
-		"\uffff\u0000NZ\u0001\u0000\u0000\u0000OP\u0005-\u0000\u0000PZ\u0006\u0001"+
-		"\uffff\uffff\u0000QR\u0005*\u0000\u0000RZ\u0006\u0001\uffff\uffff\u0000"+
-		"ST\u0005,\u0000\u0000TZ\u0006\u0001\uffff\uffff\u0000UV\u0005.\u0000\u0000"+
+		"\uffff\u0000NZ\u0001\u0000\u0000\u0000OP\u0005)\u0000\u0000PZ\u0006\u0001"+
+		"\uffff\uffff\u0000QR\u0005.\u0000\u0000RZ\u0006\u0001\uffff\uffff\u0000"+
+		"ST\u0005+\u0000\u0000TZ\u0006\u0001\uffff\uffff\u0000UV\u0005-\u0000\u0000"+
 		"VZ\u0006\u0001\uffff\uffff\u0000WX\u0005/\u0000\u0000XZ\u0006\u0001\uffff"+
 		"\uffff\u0000Y)\u0001\u0000\u0000\u0000Y/\u0001\u0000\u0000\u0000Y@\u0001"+
 		"\u0000\u0000\u0000YG\u0001\u0000\u0000\u0000YK\u0001\u0000\u0000\u0000"+
@@ -1737,7 +1737,7 @@ public class TSmmParser extends Parser {
 		"\u0000\u0000\u0000op\n\u000e\u0000\u0000pq\u0005\u0004\u0000\u0000qr\u0003"+
 		"\u0002\u0001\u0000rs\u0005\u0005\u0000\u0000st\u0006\u0001\uffff\uffff"+
 		"\u0000tz\u0001\u0000\u0000\u0000uv\n\r\u0000\u0000vw\u0005\u0006\u0000"+
-		"\u0000wx\u0005-\u0000\u0000xz\u0006\u0001\uffff\uffff\u0000y[\u0001\u0000"+
+		"\u0000wx\u0005.\u0000\u0000xz\u0006\u0001\uffff\uffff\u0000y[\u0001\u0000"+
 		"\u0000\u0000y`\u0001\u0000\u0000\u0000ye\u0001\u0000\u0000\u0000yj\u0001"+
 		"\u0000\u0000\u0000yo\u0001\u0000\u0000\u0000yu\u0001\u0000\u0000\u0000"+
 		"z}\u0001\u0000\u0000\u0000{y\u0001\u0000\u0000\u0000{|\u0001\u0000\u0000"+
@@ -1771,7 +1771,7 @@ public class TSmmParser extends Parser {
 		"\u00b1\u0001\u0000\u0000\u0000\u00b0\u00ac\u0001\u0000\u0000\u0000\u00b0"+
 		"\u00b1\u0001\u0000\u0000\u0000\u00b1\u00b2\u0001\u0000\u0000\u0000\u00b2"+
 		"\u00b3\u0006\u0002\uffff\uffff\u0000\u00b3\u00cc\u0001\u0000\u0000\u0000"+
-		"\u00b4\u00b5\u0005-\u0000\u0000\u00b5\u00c1\u0005\u0001\u0000\u0000\u00b6"+
+		"\u00b4\u00b5\u0005.\u0000\u0000\u00b5\u00c1\u0005\u0001\u0000\u0000\u00b6"+
 		"\u00b7\u0003\u0002\u0001\u0000\u00b7\u00be\u0006\u0002\uffff\uffff\u0000"+
 		"\u00b8\u00b9\u0005\u0003\u0000\u0000\u00b9\u00ba\u0003\u0002\u0001\u0000"+
 		"\u00ba\u00bb\u0006\u0002\uffff\uffff\u0000\u00bb\u00bd\u0001\u0000\u0000"+
@@ -1798,7 +1798,7 @@ public class TSmmParser extends Parser {
 		"\u0001\u0000\u0000\u0000\u00da\u00d0\u0001\u0000\u0000\u0000\u00db\u0007"+
 		"\u0001\u0000\u0000\u0000\u00dc\u00dd\u0003\n\u0005\u0000\u00dd\u00de\u0006"+
 		"\u0004\uffff\uffff\u0000\u00de\u00f1\u0001\u0000\u0000\u0000\u00df\u00e0"+
-		"\u0005\u0004\u0000\u0000\u00e0\u00e1\u0005*\u0000\u0000\u00e1\u00e2\u0005"+
+		"\u0005\u0004\u0000\u0000\u00e0\u00e1\u0005+\u0000\u0000\u00e1\u00e2\u0005"+
 		"\u0005\u0000\u0000\u00e2\u00e3\u0003\b\u0004\u0000\u00e3\u00e4\u0006\u0004"+
 		"\uffff\uffff\u0000\u00e4\u00f1\u0001\u0000\u0000\u0000\u00e5\u00e9\u0005"+
 		"\u0004\u0000\u0000\u00e6\u00e7\u0003\f\u0006\u0000\u00e7\u00e8\u0006\u0004"+
@@ -1823,7 +1823,7 @@ public class TSmmParser extends Parser {
 		"\u0000\u0106\u0107\u0003\u0010\b\u0000\u0107\u0108\u0006\u0007\uffff\uffff"+
 		"\u0000\u0108\u010a\u0001\u0000\u0000\u0000\u0109\u0103\u0001\u0000\u0000"+
 		"\u0000\u0109\u0106\u0001\u0000\u0000\u0000\u010a\u000f\u0001\u0000\u0000"+
-		"\u0000\u010b\u010c\u0005&\u0000\u0000\u010c\u010d\u0005-\u0000\u0000\u010d"+
+		"\u0000\u010b\u010c\u0005&\u0000\u0000\u010c\u010d\u0005.\u0000\u0000\u010d"+
 		"\u0111\u0005\u0001\u0000\u0000\u010e\u010f\u0003\u0014\n\u0000\u010f\u0110"+
 		"\u0006\b\uffff\uffff\u0000\u0110\u0112\u0001\u0000\u0000\u0000\u0111\u010e"+
 		"\u0001\u0000\u0000\u0000\u0111\u0112\u0001\u0000\u0000\u0000\u0112\u0113"+
@@ -1845,9 +1845,9 @@ public class TSmmParser extends Parser {
 		"\u0000\u0000\u0000\u012e\u012f\u0001\u0000\u0000\u0000\u012f\u0131\u0001"+
 		"\u0000\u0000\u0000\u0130\u012e\u0001\u0000\u0000\u0000\u0131\u0132\u0006"+
 		"\t\uffff\uffff\u0000\u0132\u0013\u0001\u0000\u0000\u0000\u0133\u0134\u0005"+
-		"-\u0000\u0000\u0134\u0135\u0005%\u0000\u0000\u0135\u0136\u0003\b\u0004"+
+		".\u0000\u0000\u0134\u0135\u0005%\u0000\u0000\u0135\u0136\u0003\b\u0004"+
 		"\u0000\u0136\u013f\u0006\n\uffff\uffff\u0000\u0137\u0138\u0005\u0003\u0000"+
-		"\u0000\u0138\u0139\u0005-\u0000\u0000\u0139\u013a\u0005%\u0000\u0000\u013a"+
+		"\u0000\u0138\u0139\u0005.\u0000\u0000\u0139\u013a\u0005%\u0000\u0000\u013a"+
 		"\u013b\u0003\b\u0004\u0000\u013b\u013c\u0006\n\uffff\uffff\u0000\u013c"+
 		"\u013e\u0001\u0000\u0000\u0000\u013d\u0137\u0001\u0000\u0000\u0000\u013e"+
 		"\u0141\u0001\u0000\u0000\u0000\u013f\u013d\u0001\u0000\u0000\u0000\u013f"+
@@ -1856,8 +1856,8 @@ public class TSmmParser extends Parser {
 		"\u0003\u0018\f\u0000\u0144\u0145\u0005%\u0000\u0000\u0145\u0146\u0003"+
 		"\b\u0004\u0000\u0146\u0147\u0005\u0017\u0000\u0000\u0147\u0148\u0006\u000b"+
 		"\uffff\uffff\u0000\u0148\u0017\u0001\u0000\u0000\u0000\u0149\u014a\u0005"+
-		"-\u0000\u0000\u014a\u0150\u0006\f\uffff\uffff\u0000\u014b\u014c\u0005"+
-		"\u0003\u0000\u0000\u014c\u014d\u0005-\u0000\u0000\u014d\u014f\u0006\f"+
+		".\u0000\u0000\u014a\u0150\u0006\f\uffff\uffff\u0000\u014b\u014c\u0005"+
+		"\u0003\u0000\u0000\u014c\u014d\u0005.\u0000\u0000\u014d\u014f\u0006\f"+
 		"\uffff\uffff\u0000\u014e\u014b\u0001\u0000\u0000\u0000\u014f\u0152\u0001"+
 		"\u0000\u0000\u0000\u0150\u014e\u0001\u0000\u0000\u0000\u0150\u0151\u0001"+
 		"\u0000\u0000\u0000\u0151\u0019\u0001\u0000\u0000\u0000\u0152\u0150\u0001"+

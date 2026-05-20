@@ -112,6 +112,13 @@ expression returns [Expression ast] locals [List<Expression> exps = new ArrayLis
                         $e1.ast.getLine(),
                         $e1.ast.getColumn());
                 }
+
+           | BOOLEAN_CONSTANT
+                 {$ast = new BooleanLiteral(
+                         LexerHelper.lexemeToBoolean($BOOLEAN_CONSTANT.text),
+                         $BOOLEAN_CONSTANT.getLine(),
+                         $BOOLEAN_CONSTANT.getCharPositionInLine()+1);
+                 }
            // Variable
            | ID
                 {$ast = new Variable(
@@ -139,13 +146,6 @@ expression returns [Expression ast] locals [List<Expression> exps = new ArrayLis
                         LexerHelper.lexemeToChar($CHAR_CONSTANT.text),
                         $CHAR_CONSTANT.getLine(),
                         $CHAR_CONSTANT.getCharPositionInLine()+1);
-                }
-
-           | BOOLEAN_CONSTANT
-                {$ast = new BooleanLiteral(
-                        LexerHelper.lexemeToBoolean($BOOLEAN_CONSTANT.text),
-                        $BOOLEAN_CONSTANT.getLine(),
-                        $BOOLEAN_CONSTANT.getCharPositionInLine()+1);
                 }
            ;
 
@@ -337,6 +337,10 @@ mainDefinition returns [FunctionDefinition ast]:
 
 // REGLAS LEXICAS ---------------------------------------
 
+BOOLEAN_CONSTANT: 'true'
+                | 'false'
+                ;
+
 // Patrón espacios en blanco
 WHITES: [ \n\t\r]+ -> skip
       ;
@@ -382,7 +386,3 @@ BASE_DECIMAL: INT_CONSTANT '.' DIGIT*
 fragment
 EXP:[Ee] [+-]? INT_CONSTANT
     ;
-
-BOOLEAN_CONSTANT: 'true'
-                | 'false'
-                ;

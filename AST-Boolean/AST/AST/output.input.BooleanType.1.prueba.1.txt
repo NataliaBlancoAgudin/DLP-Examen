@@ -1,0 +1,59 @@
+
+#source	"input.BooleanType.1.txt"
+
+	 ' * IntType contador(offset 0)
+	 ' * BooleanType encendido(offset 2)
+
+' Invocation to the main function
+call main
+halt
+
+#line	4
+
+ main:
+	 ' * Parameters:
+	 ' * Local Variables:
+	enter	0
+
+#line	5
+	 ' * Assignment
+	pusha	0
+	pushi	0
+	storei
+
+#line	6
+	 ' * Assignment
+	pusha	2
+	pushi	1
+	storei
+
+#line	8
+	 ' * If
+	pusha	2
+	loadi
+	jz	label0
+	 ' * if body
+
+#line	9
+	 ' * Assignment
+	pusha	0
+	pusha	0
+	loadi
+	pushi	1
+	addi
+	storei
+
+#line	10
+	 ' * Write
+	pusha	0
+	loadi
+	outi
+	jmp	label1
+
+label0:
+
+	 ' * else body
+
+label1:
+
+	ret	0, 0, 0

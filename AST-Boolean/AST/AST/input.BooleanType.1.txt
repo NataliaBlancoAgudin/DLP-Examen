@@ -1,0 +1,12 @@
+let contador: int;
+let encendido: boolean;
+
+function main():void {
+    contador = 0;
+    encendido = true;
+
+    if (encendido) {
+        contador=contador+1;
+        log contador;  // Debería imprimir 1
+    }
+}

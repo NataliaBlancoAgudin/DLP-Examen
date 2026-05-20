@@ -54,6 +54,14 @@ public class BooleanType extends AbstractType {
     }
 
     @Override
+    public void mustPromotesTo(Type other, Locatable l) {
+        if(other == this) {
+            return;
+        }
+        super.mustPromotesTo(other, l);
+    }
+
+    @Override
     public String toString(){
         return "BooleanType";
     }
